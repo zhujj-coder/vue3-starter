@@ -20,13 +20,20 @@ Vue 3 + Vite + Pinia + shadcn-vue + Tailwind CSS 脚手架。
 - Node.js **>= 20.19.0**
 - npm / pnpm / yarn 任选
 
-## 快速开始
+## 使用脚手架
+
+通过 [degit](https://github.com/Rich-Harris/degit) 直接拉取模板（无需克隆整个 git 历史）：
 
 ```bash
+npx degit zhujj-coder/vue3-starter my-new-project
+cd my-new-project
 npm install
+npm run init          # 把 package.json / index.html / README 的名字改成 my-new-project
 cp .env.example .env.development   # 可选
 npm run dev
 ```
+
+`npm run init` 会用**当前目录名**作为新项目名，写入 `package.json`、`index.html` 的 `<title>` 与 `README.md` 标题。该脚本只会修改以上三处，**不会**重命名目录本身，所以建议在 degit 时就指定最终名字。
 
 打开 [http://localhost:3000](http://localhost:3000)。
 
