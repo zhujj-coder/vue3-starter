@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import ErrorBoundary from '@/components/ErrorBoundary.vue'
+import { Toaster } from '@/components/ui/sonner'
 </script>
 
 <template>
@@ -12,10 +13,14 @@ import ErrorBoundary from '@/components/ErrorBoundary.vue'
         <router-link to="/about" class="font-semibold text-blue-600 hover:text-blue-800"
           >About</router-link
         >
+        <router-link to="/user" class="font-semibold text-blue-600 hover:text-blue-800"
+          >User</router-link
+        >
       </nav>
       <main class="mx-auto max-w-4xl p-6">
         <router-view />
       </main>
     </div>
   </ErrorBoundary>
+  <Toaster />
 </template>

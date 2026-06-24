@@ -13,6 +13,8 @@ Vue 3 + Vite + Pinia + shadcn-vue + Tailwind CSS 脚手架。
 | [shadcn-vue](https://www.shadcn-vue.com/) | 可复制、可定制的组件 |
 | [Tailwind CSS](https://tailwindcss.com/) | 原子化 CSS |
 | [@vueuse/core](https://vueuse.org/) | 组合式工具集 |
+| [axios](https://axios-http.com/) | HTTP 客户端（`src/lib/request.ts` 统一封装） |
+| [vue-sonner](https://github.com/wobsoriano/vue-sonner) | 全局 Toast 通知 |
 | ESLint + Prettier | 代码规范与格式化 |
 
 ## 环境要求
@@ -70,6 +72,25 @@ src/
 ├── env.d.ts                ← TS 类型声明
 └── style.css               ← Tailwind + 主题变量
 ```
+
+## HTTP 请求
+
+`src/lib/request.ts` 基于 axios 做了统一封装：
+
+- 请求拦截器自动注入 `Authorization: Bearer <token>`（从 `localStorage.token` 读取）
+- 响应拦截器约定业务响应 `{ code, message, data }`：
+  - `code` 在 `200-299` 之间时直接返回 `data`
+  - 其它情况自动弹窗提示 `message`，并以 `ApiError` reject
+- 网络错误 / HTTP 状态码错误也会 toast 提示
+
+```ts
+import { request } from '@/lib/request'
+import { getUser } from '@/api/user'
+
+const user = await getUser(1)
+```
+
+业务 API 写在 `src/api/<module>.ts`，按域拆分。
 
 ## 添加 shadcn-vue 组件
 
